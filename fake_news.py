@@ -6,8 +6,8 @@ import requests
 import urllib
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
-import re,pprint,os
-import sklearn.metrics.pairwise
+import re,os
+
 
 
 
