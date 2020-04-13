@@ -13,3 +13,6 @@ Use this link to download the model
 https://storage.googleapis.com/tfhub-modules/google/universal-sentence-encoder/1.tar.gz
 
 Unzip it and set download location in fake_news.py
+
+**update**
+pip install google-cloud-vision
