@@ -11,12 +11,12 @@ from google.cloud.vision import types
 from fake_useragent import UserAgent
 
 
-path='C:/Users/gupte/Downloads/sardar.jpeg'
+path='C:/Users/gupte/Downloads/peacock.jpeg'
 
 credential_path = "C:/Users/gupte/Downloads/My Project-34131c6caa0d.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 client = vision.ImageAnnotatorClient()
-itype = input("Does the Image has text to describe it already? Type 1 if yes else 0 to describe it : ")
+itype = int(input("Does the Image has text to describe it already? Type 1 if yes else 0 to describe it : "))
 
 with io.open(path, 'rb') as image_file:
         content = image_file.read()
@@ -29,7 +29,10 @@ image = vision.types.Image(content=content)
 
 text = client.document_text_detection(image=image)
 title1 = text.full_text_annotation.text
-print("Detected Text: " + title1)
+
+
+if(itype==1):
+    print("Detected Text: " + title1)
 if(itype==0):
     title1 = input("Title: ")
 
@@ -90,7 +93,7 @@ for x in to_remove:
     del descriptions[x]
 
 for title in title_list:
-    titles.append(title)
+    descriptions.append(title)
 module_url = "C:/Users/gupte/Downloads/1"
 tf.disable_eager_execution()
 # Import the Universal Sentence Encoder's TF Hub module
@@ -120,11 +123,11 @@ def heatmap(x_labels, y_labels, values):
 
     #fig.tight_layout()
     plt.show()
-
+descriptions=list(set(descriptions))
 messages = [title1]
-for msg in titles:
+for msg in descriptions:
     messages.append(msg)
-messages=list(set(messages))
+
 
 X=[]
 similarity_input_placeholder = tf.placeholder(tf.string, shape=(None))
