@@ -1,0 +1,54 @@
+<!doctype html>
+{%load static%}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+  </head>
+  <body style="font-family: 'Poppins', sans-serif;">
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Fake News Detection</span>
+      <a href="{%url 'home'%}"<span style="float:right;color:white;"class="material-icons">home</span></a>
+    </nav>
+    <span class="border">
+    <div class="container">
+    {%if filepath%}
+        <div class="card"id="blah1" style="width: 18rem;">
+            
+            <img class="card-img-top"id="blah" src="{%static filepath%}" alt="your image" />
+        </div>
+    {%endif%}
+        <br>
+          <div id="textinfo"  class="form-group">
+          <label for="exampleInputPassword1"><h3><bold>Title :</bold></h3><h4>{{title1}}</h4></label>
+          </div>
+    <br>
+    <h2>{{result}}</h2>
+    <p>Similarity Ratio : {{similarity}}</p>
+    <br><br>
+    <p>More Info :</p>
+    {%if tlist%}
+    {%for url in tlist%}
+        <a href="{{url}}">{{url}}</a>
+        <br>
+    {%endfor%}
+    {%else%}
+      <p> No credible sources found!</p>
+    </div>
+    {%endif%}
+    </span>
+</body>
+<script>
+
+</script>
+</html>

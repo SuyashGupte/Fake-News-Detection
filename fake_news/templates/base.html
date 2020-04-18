@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  </head>
+  <body style="font-family: 'Poppins', sans-serif;">
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Fake News Detection</span>
+    </nav>
+    <span class="border">
+    <div class="container">
+      <form action="{%url 'getdata'%}" method="POST">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputPassword1">News Type</label>
+        
+
+        <div class="form-check">
+          <input onchange="Image(this);"class="form-check-input" type="radio" name="newstype" id="news-text" value="1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Text
+          </label>
+        </div>
+        <div class="form-check">
+          <input onchange="Image(this);"class="form-check-input" type="radio" name="newstype" id="news-image" value="2">
+          <label class="form-check-label" for="exampleRadios2">
+            Image
+          </label>
+        </div>
+        </div>
+
+
+        <div id= "imagefile"class="form-group row" style="display:none;">
+          <label for="exampleFormControlFile1">Select Image File</label>
+          <input type="file" class="form-control-file" name="file"onchange="readURL(this);" id="file" accept="image/jpg, image/jpeg, image/png" />
+          </div>
+          <span >
+          <div class="card"id="blah1" style="width: 18rem;display:none;">
+            <img class="card-img-top"id="blah" src="#" alt="your image"  style="display:none;"/>
+          </div>
+          </span>
+
+
+
+        <div id="textchoice" style="display:none;"class="form-group">
+          <label for="exampleInputPassword1">Does the Image has text that can describe itself?</label>
+          <div class="form-check">
+          <input onchange="Image(this);"class="form-check-input" type="radio" name="tch" id="testy" value="3"checked >
+          <label class="form-check-label" for="exampleRadio">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input onchange="Image(this);"class="form-check-input" type="radio" name="tch" id="textn" value="4">
+          <label class="form-check-label" for="exampleRadios">
+            No
+          </label>
+        </div>
+        </div>
+
+
+        <div id="textinfo"  class="form-group">
+          <label for="exampleInputPassword1">Enter Text</label>
+          <input type="text" class="form-control" name="title" id="text" placeholder="Title...">
+          </div>
+
+  
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    </span>
+   
+  </body>
+  <script>
+    function Image(that) {
+    		if (that.value == "2") {
+        		document.getElementById("imagefile").style.display = "block";
+            document.getElementById("textinfo").style.display = "none";
+            
+    		} 
+			if(that.value == "1") {
+        		document.getElementById("imagefile").style.display = "none";
+            document.getElementById("textinfo").style.display = "block";
+             document.getElementById("textchoice").style.display = "none";
+                document.getElementById("blah").style.display = "none";
+                document.getElementById("blah1").style.display = "none";
+            
+   			 }
+      if (that.value == "4") {
+        document.getElementById("textinfo").style.display = "block";
+      }
+      if (that.value == "3") {
+        document.getElementById("textinfo").style.display = "none";
+      }
+		}
+   
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("textchoice").style.display = "block";
+                document.getElementById("blah").style.display = "block";
+                document.getElementById("blah1").style.display = "block";
+                $('#blah').attr('src', e.target.result);
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+
+    }
+
+    $("#file").change(function(){
+
+        readURL(this);
+
+    });
+  </script>
+</html>
