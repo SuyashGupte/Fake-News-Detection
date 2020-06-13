@@ -18,3 +18,5 @@ https://storage.googleapis.com/tfhub-modules/google/universal-sentence-encoder/1
 Unzip it and paste it in fake_news/fake/model
 
 Paste images in fake_news/fake/static to use them
+
+Create a project to use Google Vision API
